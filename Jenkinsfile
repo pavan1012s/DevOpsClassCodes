@@ -1,6 +1,6 @@
 pipeline{
 	agent any
-	tools{
+	//tools{
 		maven "test-maven"
 	}
       stages{
@@ -24,6 +24,7 @@ pipeline{
 		    
 		  echo 'codeReview'
                   sh 'mvn pmd:pmd'
+		  recordIssues(tools: [pmdParser()]) 
               }
           }
            stage('UnitTest'){
